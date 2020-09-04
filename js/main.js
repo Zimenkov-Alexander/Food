@@ -1,7 +1,7 @@
 "use strict";
 
 const personalMovieDB = {
-	count: function () {
+	count: () => {
 		let number = +prompt('Сколько фильмов вы уже посмотрели?', '');
 	
 		while (number == '' || number == null || isNaN(number)) {
@@ -9,7 +9,7 @@ const personalMovieDB = {
 		}
 		return number;
 	},
-	movies: function () {
+	movies: () => {
 
 		let movies = {};
 	
@@ -27,7 +27,7 @@ const personalMovieDB = {
 		return movies;
 	},
     actors: {},
-    genres: function (){
+    genres: () => {
 		let genreFilms = []; 
 		let genre;
 		for (let i = 0; i < 3; i++){
@@ -43,7 +43,7 @@ const personalMovieDB = {
 		return genreFilms;
 	},
 	privat: false,
-	toggleVisibleMyDB: function(privatToggle){
+	toggleVisibleMyDB: (privatToggle) => {
 		if (privatToggle){
 			personalMovieDB.privat = false;
 		} else{
@@ -53,7 +53,7 @@ const personalMovieDB = {
 };
 
 
-function detectPersonalLevel  () {
+const detectPersonalLevel = () => {
 	if (personalMovieDB.count < 10) {
 		alert ("Просмотрено довольно мало фильмов");
 	} else if (personalMovieDB.count > 10 && personalMovieDB.count < 30){
@@ -63,15 +63,15 @@ function detectPersonalLevel  () {
 	} else{
 		alert ("Произошла ошибка");
 	}
-}
+};
 
 // detectPersonalLevel();
 
-function showMyDB (privatToggle){
+const showMyDB = (privatToggle) => {
 	if (!privatToggle){
 		console.log(personalMovieDB);
 	}
-}
+};
 showMyDB(personalMovieDB.privat);
 
 
