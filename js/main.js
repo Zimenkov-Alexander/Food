@@ -1,11 +1,11 @@
 "use strict";
 
-const ad = document.querySelector('.promo__adv'),
-	  adBlocks= ad.querySelectorAll('img'),
-	  adTitle = ad.querySelector('.promo__adv-title'),
+const ads = document.querySelector('.promo__adv'),
+	  adsBlocks= ads.querySelectorAll('img'),
+	  adsTitle = ads.querySelector('.promo__adv-title'),
 	  promoBg = document.querySelector('.promo__bg'),
 	  promoGenre = promoBg.querySelector('.promo__genre'),
-	  promoInteractiveItems = document.querySelectorAll('.promo__interactive-item');
+	  promoInteractivelist = document.querySelector('.promo__interactive-list');
 
 
 const movieDB = {
@@ -20,8 +20,8 @@ const movieDB = {
 movieDB.movies.sort();
 
 // Задание 1
-adBlocks.forEach(item => item.remove());
-adTitle.textContent = '';
+adsBlocks.forEach(item => item.remove());
+adsTitle.textContent = '';
 
 // Задание 2
 promoGenre.textContent = 'ДРАМА';
@@ -30,6 +30,12 @@ promoGenre.textContent = 'ДРАМА';
 promoBg.style.cssText = "background-image: url(../image/bg.jpg)"; 
 
 // Задание 4 и 5
-promoInteractiveItems.forEach((item, i) => (
-	item.textContent = `${i+1}. ${movieDB.movies[i]}.`
-));
+
+promoInteractivelist.innerHTML = '';
+
+movieDB.movies.forEach((item, i) => {
+	let li = document.createElement('li');
+	li.textContent = `${i+1}. ${item}`;
+	li.classList.add('promo__interactive-item');
+	promoInteractivelist.append(li);
+});
