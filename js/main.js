@@ -34,8 +34,9 @@ promoBg.style.cssText = "background-image: url(../image/bg.jpg)";
 promoInteractivelist.innerHTML = '';
 
 movieDB.movies.forEach((item, i) => {
-	let li = document.createElement('li');
-	li.textContent = `${i+1}. ${item}`;
-	li.classList.add('promo__interactive-item');
-	promoInteractivelist.append(li);
+    promoInteractivelist.innerHTML += `
+        <li class="promo__interactive-item">${i+1}. ${item}
+            <div class="delete"></div>
+        </li>
+    `;
 });
