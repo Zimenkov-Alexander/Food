@@ -65,7 +65,7 @@ const detectPersonalLevel = () => {
 	}
 };
 
-// detectPersonalLevel();
+detectPersonalLevel();
 
 const showMyDB = (privatToggle) => {
 	if (!privatToggle){
