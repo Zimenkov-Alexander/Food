@@ -5,7 +5,7 @@ window.addEventListener('DOMContentLoaded', () => {
 		modalCloseBtn = document.querySelector('[data-close]'),
 		modal = document.querySelector('.modal'),
 		modalTimerId = setTimeout(modalToggle, (1000 * 60 * 3));
-
+		clearInterval(modalTimerId);
 	function modalToggle () {
 		modal.classList.toggle('show');
 		modal.classList.toggle('hide');
