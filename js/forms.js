@@ -1,9 +1,11 @@
+'use strict';
+
 window.addEventListener('DOMContentLoaded', () => {
 
 	const forms = document.querySelectorAll('form');
 
 	const message = {
-		loading: 'Загрузка',
+		loading: 'icons/spinner.svg',
 		success: 'Спасибо, скоро мы с вами свяжемся',
 		failed: 'Что-то пошло не так...'
 	};
@@ -17,9 +19,12 @@ window.addEventListener('DOMContentLoaded', () => {
 			evt.preventDefault();
 			
 			const statusMessage = document.createElement('div');
-			statusMessage.classList.add('status');
-			statusMessage.textContent = message.loading;
-			form.append(statusMessage);
+			statusMessage.scr = message.loading;
+			statusMessage.style.cssText = `
+				display: block;
+				margin: 0 auto;
+			`;
+			form.insertAdjacentElement('afterend', statusMessage);
 
 			const requst = new XMLHttpRequest();
 			requst.open('POST', 'server.php');
@@ -39,16 +44,47 @@ window.addEventListener('DOMContentLoaded', () => {
 			requst.addEventListener('load', () => {
 				if (requst.status === 200){
 					console.log(requst.response);
-					statusMessage.textContent = message.success;
+
+					showThanksModal(message.success);
+					
 					form.reset();
-					setTimeout(() => {
-						statusMessage.remove();
-					}, 3000);
+					statusMessage.remove();
 				
 				} else{
-					statusMessage.textContent = message.failed;
+					message.success(message.failed);
 				}
 			});
 		});
 	}
+
+	function showThanksModal(message){
+		const prevModalDialog = document.querySelector('.modal__dialog');
+		const modal = document.querySelector('.modal');
+
+		prevModalDialog.classList.add('hide');
+		modal.classList.add('show');
+		modal.classList.remove('hide');
+		document.body.style.overflow = 'hidden';
+
+		const thanksModal = document.createElement('div');
+		thanksModal.classList.add('modal__dialog');
+		thanksModal.innerHTML = `
+			<div class="modal__content">
+				<div class="modal__close" data-close>×</div>
+				<div class="modal__title">${message}</div>
+			</div>
+		`;
+		
+		modal.appendChild(thanksModal);
+
+		setTimeout(()=> {
+			thanksModal.remove();
+			prevModalDialog.classList.add('show');
+			prevModalDialog.classList.remove('hide');
+			modal.classList.add('hide');
+			modal.classList.remove('show');
+			document.body.style.overflow = '';
+		}, 4000);
+	}
+	
 });
