@@ -18,7 +18,7 @@ window.addEventListener('DOMContentLoaded', () => {
 		form.addEventListener('submit', (evt) => {
 			evt.preventDefault();
 			
-			const statusMessage = document.createElement('div');
+			let statusMessage = document.createElement('img');
 			statusMessage.scr = message.loading;
 			statusMessage.style.cssText = `
 				display: block;
@@ -26,34 +26,28 @@ window.addEventListener('DOMContentLoaded', () => {
 			`;
 			form.insertAdjacentElement('afterend', statusMessage);
 
-			const requst = new XMLHttpRequest();
-			requst.open('POST', 'server.php');
+            const formData = new FormData(form);
 
-			requst.setRequestHeader('Content-type', 'application/json');
-			const formData = new FormData(form);
-			const object = {};
+            const object = {};
+            formData.forEach(function(value, key){
+                object[key] = value;
+            });
 
-			formData.forEach((value, key) => {
-				object[key] = value;
-			});
-
-			const json =JSON.stringify(object);
-
-			requst.send(json);
-
-			requst.addEventListener('load', () => {
-				if (requst.status === 200){
-					console.log(requst.response);
-
-					showThanksModal(message.success);
-					
-					form.reset();
-					statusMessage.remove();
-				
-				} else{
-					message.success(message.failed);
-				}
-			});
+            fetch('server.php', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(object)
+            }).then(data => {
+                console.log(data);
+                showThanksModal(message.success);
+                statusMessage.remove();
+            }).catch(() => {
+                showThanksModal(message.failure);
+            }).finally(() => {
+                form.reset();
+            });
 		});
 	}
 
@@ -75,7 +69,7 @@ window.addEventListener('DOMContentLoaded', () => {
 			</div>
 		`;
 		
-		modal.appendChild(thanksModal);
+		modal.append(thanksModal);
 
 		setTimeout(()=> {
 			thanksModal.remove();
@@ -86,5 +80,4 @@ window.addEventListener('DOMContentLoaded', () => {
 			document.body.style.overflow = '';
 		}, 4000);
 	}
-	
 });
