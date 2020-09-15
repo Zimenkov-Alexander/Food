@@ -1,0 +1,22 @@
+{
+  "name": "udemy-js",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Zimenkov-Alexander/--------JS.git"
+  },
+  "author": "zimenkov",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Zimenkov-Alexander/--------JS/issues"
+  },
+  "homepage": "https://github.com/Zimenkov-Alexander/--------JS#readme",
+  "devDependencies": {
+    "json-server": "^0.16.1"
+  }
+}
