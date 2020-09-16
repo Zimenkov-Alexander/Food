@@ -1,19 +1,19 @@
 window.addEventListener('DOMContentLoaded', () => {
 
 	class MenuCard {
-		constructor(scr, alt, title, descr, prise, parentSelector){
+		constructor(scr, alt, title, descr, price, parentSelector){
 			this.scr = scr;
 			this.alt = alt;
 			this.title = title;
 			this.descr = descr;
-			this.prise = prise;
+			this.price = price;
 			this.parent = document.querySelector(parentSelector);
 			this.transfer = 27.6;
 			this.changeToUAH();
 		}
 
 		changeToUAH() {
-			this.prise = Math.floor(this.prise * this.transfer);
+			this.price = Math.floor(this.price * this.transfer);
 		}
 
 		render() {
@@ -26,55 +26,26 @@ window.addEventListener('DOMContentLoaded', () => {
 					<div class="menu__item-divider"></div>
 					<div class="menu__item-price">
 						<div class="menu__item-cost">Цена:</div>
-						<div class="menu__item-total"><span>${this.prise}</span> грн/день</div>
+						<div class="menu__item-total"><span>${this.price}</span> грн/день</div>
 			`;
 			div.classList.add('menu__item');
 			this.parent.append(div);
 		}
 	}
 
-	const cards = {
-		fitnessMenu: {
-			scr: 'img/tabs/vegy.jpg',
-			alt: 'vegy',
-			title: 'Меню "Фитнес"',
-			descr: 'Меню "Фитнес" - это новый подход к приготовлению блюд: больше'+
-			'свежих овощей и фруктов. Продукт активных и здоровых людей.' + 
-			'Это абсолютно новый продукт с оптимальной ценой и высоким качеством!',
-			prise: 9
-			},
-		premiumMenu: {
-				scr: 'img/tabs/elite.jpg',
-				alt: 'elite',
-				title: 'Меню “Премиум”',
-				descr: 'В меню “Премиум” мы используем не только красивый дизайн упаковки,' +
-				'но и качественное исполнение блюд. Красная рыба, морепродукты, фрукты -' +
-				'ресторанное меню без похода в ресторан!',
-				prise: 14
-			},
-		leanMenu: {
-			scr: 'img/tabs/post.jpg',
-			alt: 'post',
-			title: 'Меню "Постное"',
-			descr: 'Меню “Постное” - это тщательный подбор ингредиентов: полное отсутствие' +
-			'продуктов животного происхождения, молоко из миндаля, овса, кокоса или гречки,' +
-			'правильное количество белков за счет тофу и импортных вегетарианских стейков.',
-			prise: 21
+	const getResource = async (url) => {
+		const res = await fetch (url);
+
+		if (!res.ok) {
+			throw new Error(`Could not fetch ${url}, status: ${res.status}`);
 		}
+
+		return await res.json();
 	};
-
-	function addCard (obj){
-		for (let key in obj){
-			new MenuCard(
-				obj[key].scr,
-				obj[key].alt,
-				obj[key].title,
-				obj[key].descr,
-				obj[key].prise,
-				'.menu .container'
-			).render();
-		}
-	}
-	addCard(cards);
-
+	getResource('http://localhost:3000/menu')
+		.then(data => {
+			data.forEach(({img, altimg, title, descr, price}) => {
+				new MenuCard(img,altimg,title,descr,price, '.menu .container').render();
+			});
+		})
 });

@@ -11,10 +11,22 @@ window.addEventListener('DOMContentLoaded', () => {
 	};
 
 	forms.forEach(item => {
-		postData(item);
+		bindPostData(item);
 	});
 
-	function postData(form){
+	const postData = async (url, data) => {
+		const res = await fetch (url, {
+			method: 'POST',
+			headers: {
+				'Content-Type': 'application/json'
+			},
+			body: data
+		});
+
+		return await res.json();
+	};
+
+	function bindPostData(form){
 		form.addEventListener('submit', (evt) => {
 			evt.preventDefault();
 			
@@ -27,19 +39,11 @@ window.addEventListener('DOMContentLoaded', () => {
 			form.insertAdjacentElement('afterend', statusMessage);
 
             const formData = new FormData(form);
+		
+			const json = JSON.stringify(Object.fromEntries(formData.entries()));
 
-            const object = {};
-            formData.forEach(function(value, key){
-                object[key] = value;
-            });
-
-            fetch('server.php', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify(object)
-            }).then(data => {
+			postData('http://localhost:3000/requests', json)
+			.then(data => {
                 console.log(data);
                 showThanksModal(message.success);
                 statusMessage.remove();
@@ -52,6 +56,7 @@ window.addEventListener('DOMContentLoaded', () => {
 	}
 
 	function showThanksModal(message){
+		
 		const prevModalDialog = document.querySelector('.modal__dialog');
 		const modal = document.querySelector('.modal');
 
@@ -82,7 +87,7 @@ window.addEventListener('DOMContentLoaded', () => {
 	}
 	
 
-	fetch('db.json')
+	fetch('http://localhost:3000/menu')
 		.then(data => data.json())
 		.then(res => console.log(res));
 		
