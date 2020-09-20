@@ -1,29 +1,31 @@
-'use strict';
-window.addEventListener('DOMContentLoaded', () => {
+function slider ({
+	container, slide, nextArrow, prevArrow,
+	totalCounter, corruntCounter, wrapper, field 
+}) {
 
-	let current = document.querySelector('#current'),
-		total = document.querySelector('#total'),
+	let current = document.querySelector(corruntCounter),
+		total = document.querySelector(totalCounter),
 		slideIndex = 1,
 		offset = 0;
 
 	// Переменные по слайдеру
-	const slides = document.querySelectorAll('.offer__slide'),
-		  slider = document.querySelector('.offer__slider'),
-		  sliderWrapper = document.querySelector('.offer__slider-wrapper'),
-	 	  slidesField = document.querySelector('.offer__slider-inner'),
+	const slides = document.querySelectorAll(slide),
+		  slider = document.querySelector(container),
+		  sliderWrapper = document.querySelector(wrapper),
+	 	  slidesField = document.querySelector(field),
 		  slideWidth = window.getComputedStyle(sliderWrapper).width;
 
 	// Переменные по кнопкам навигаии
-	const btnNextSlide = document.querySelector('.offer__slider-next'),
-		  btnPrevSlide = document.querySelector('.offer__slider-prev'),
+	const btnNextSlide = document.querySelector(nextArrow),
+		  btnPrevSlide = document.querySelector(prevArrow),
 		  indicators = document.createElement('ol'),
 		  dots = [];
 
 	btnNextSlide.addEventListener('click', () => {
-		if (offset == +slideWidth.slice(0, slideWidth.length - 2) * (slides.length - 1)) {
+		if (offset == deleteNotDigits(slideWidth) * (slides.length - 1)) {
 			offset = 0;
 		} else {
-			offset += +slideWidth.slice(0, slideWidth.length - 2);
+			offset += deleteNotDigits(slideWidth);
 		}
 
 		slidesField.style.transform = `translateX(-${offset}px)`;
@@ -35,9 +37,9 @@ window.addEventListener('DOMContentLoaded', () => {
 	});
 	btnPrevSlide.addEventListener('click', () => {
 		if (offset == 0) {
-			offset = +slideWidth.slice(0, slideWidth.length - 2) * (slides.length - 1);
+			offset = deleteNotDigits(slideWidth) * (slides.length - 1);
 		} else {
-			offset -= +slideWidth.slice(0, slideWidth.length - 2);
+			offset -= deleteNotDigits(slideWidth);
 		}
 
 		slidesField.style.transform = `translateX(-${offset}px)`;
@@ -101,7 +103,10 @@ window.addEventListener('DOMContentLoaded', () => {
 		dots.forEach(dot => dot.style.opacity = '.5');
 		dots[slideIndex-1].style.opacity = 1;
 	}
-
+	function deleteNotDigits(str){
+		return +str.replace(/\D/g, '');
+	}
+	
 	сheckSlideIndex();
 	addStylesSlider();
 	creativeList();
@@ -111,11 +116,12 @@ window.addEventListener('DOMContentLoaded', () => {
 			const slideTo = evt.target.getAttribute('data-slide-to');
 			
 			slideIndex = slideTo;
-			offset = +slideWidth.slice(0, slideWidth.length - 2) * (slideTo- 1);
+			offset = deleteNotDigits(slideWidth) * (slideTo- 1);
 
 			slidesField.style.transform = `translateX(-${offset}px)`;
 			сheckSlideIndex();
 			addStyleList();
 		});
 	});
-});
+}
+export default slider;

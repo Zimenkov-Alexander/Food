@@ -1,6 +1,4 @@
-'use strict';
-window.addEventListener('DOMContentLoaded', () => {
-	const deadLine = '2020-09-20';
+function timer (id, deadLine) {
 
 	function getTimeRemaining(endtime){
 		const t = Date.parse(endtime) - Date.parse(new Date()),
@@ -52,5 +50,6 @@ window.addEventListener('DOMContentLoaded', () => {
 		}
 	}
 
-	setClock('.timer', deadLine);
-});
+	setClock(id, deadLine);
+}
+export default timer;

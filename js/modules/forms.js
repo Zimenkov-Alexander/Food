@@ -1,6 +1,6 @@
-'use strict';
+import {postData} from '../services/services';
 
-window.addEventListener('DOMContentLoaded', () => {
+function forms () {
 
 	const forms = document.querySelectorAll('form');
 
@@ -13,19 +13,7 @@ window.addEventListener('DOMContentLoaded', () => {
 	forms.forEach(item => {
 		bindPostData(item);
 	});
-
-	const postData = async (url, data) => {
-		const res = await fetch (url, {
-			method: 'POST',
-			headers: {
-				'Content-Type': 'application/json'
-			},
-			body: data
-		});
-
-		return await res.json();
-	};
-
+	
 	function bindPostData(form){
 		form.addEventListener('submit', (evt) => {
 			evt.preventDefault();
@@ -88,7 +76,8 @@ window.addEventListener('DOMContentLoaded', () => {
 	
 
 	fetch('http://localhost:3000/menu')
-		.then(data => data.json())
-		.then(res => console.log(res));
+		.then(data => data.json());
+		// .then(res => console.log(res));
 		
-});
+}
+export default forms;

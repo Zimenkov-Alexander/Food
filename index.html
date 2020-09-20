@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Food</title>
     <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
     <header class="header">
@@ -14,8 +13,8 @@
                 <img src="icons/logo.svg" alt="Логотип">
             </div>
             <nav class="header__links">
-                <a href="#" class="header__link">Доставка питания</a>
-                <a href="#" class="header__link">Второй пункт</a>
+                <a href="#" class="header__link disabled">Доставка питания</a>
+                <a href="#" class="header__link disabled">Второй пункт</a>
             </nav>
         </div>
         <div class="header__right-block">
@@ -25,10 +24,10 @@
     <div class="sidepanel">
         <div class="sidepanel__text"><span>Социальные сети</span></div>
         <div class="sidepanel__divider"></div>
-        <a href="#" class="sidepanel__icon">
+        <a href="https://www.instagram.com/zimenkov_ua" class="sidepanel__icon">
             <img src="icons/instagram.svg" alt="instagram">
         </a>
-        <a href="#" class="sidepanel__icon">
+        <a href="https://www.facebook.com/AlexZimenkov97" class="sidepanel__icon">
             <img src="icons/facebook.svg" alt="facebook">
         </a>
     </div>
@@ -113,23 +112,6 @@
                         <img src="icons/right.svg" alt="next">
                     </div>
 				</div>
-				<!-- ?Слайдер 1 -->
-                <!-- <div class="offer__slider-wrapper">
-                    <div class="offer__slide">
-                        <img src="img/slider/pepper.jpg" alt="pepper">
-                    </div>
-                    <div class="offer__slide">
-                        <img src="img/slider/food-12.jpg" alt="food">
-                    </div>
-                    <div class="offer__slide">
-                        <img src="img/slider/olive-oil.jpg" alt="oil">
-                    </div>
-                    <div class="offer__slide">
-                        <img src="img/slider/paprika.jpg" alt="paprika">
-                    </div>
-				</div> -->
-				
-				<!-- ?Слайдер 2 -->
                 <div class="offer__slider-wrapper">
                     <div class="offer__slider-inner">
                         <div class="offer__slide">
@@ -162,8 +144,8 @@
                     Ваш пол
                 </div>
                 <div class="calculating__choose" id="gender">
-                    <div class="calculating__choose-item calculating__choose-item_active">Женщина</div>
-                    <div class="calculating__choose-item">Мужчина</div>
+                    <div id="female" class="calculating__choose-item">Женщина</div>
+                    <div id="male" class="calculating__choose-item">Мужчина</div>
                 </div>
 
                 <div class="calculating__subtitle">
@@ -179,10 +161,10 @@
                     Выберите вашу физическая активность
                 </div>
                 <div class="calculating__choose calculating__choose_big">
-                    <div id="low" class="calculating__choose-item">Низкая активность </div>
-                    <div id="small"  class="calculating__choose-item calculating__choose-item_active">Невысокая активность</div>
-                    <div id="medium" class="calculating__choose-item">Умеренная активность</div>
-                    <div id="high" class="calculating__choose-item">Высокая активность</div>
+                    <div data-radio='1.2' id="low" class="calculating__choose-item">Низкая активность </div>
+                    <div data-radio='1.375' id="small"  class="calculating__choose-item">Невысокая активность</div>
+                    <div data-radio='1.55' id="medium" class="calculating__choose-item">Умеренная активность</div>
+                    <div data-radio='1.725' id="high" class="calculating__choose-item">Высокая активность</div>
                 </div>
 
                 <div class="calculating__divider"></div>
@@ -206,16 +188,6 @@
 
         <div class="menu__field">
             <div class="container">
-                <!-- <div class="menu__item">
-                    <img src="img/tabs/vegy.jpg" alt="vegy">
-                    <h3 class="menu__item-subtitle">Меню "Фитнес"</h3>
-                    <div class="menu__item-descr">Меню "Фитнес" - это новый подход к приготовлению блюд: больше свежих овощей и фруктов. Продукт активных и здоровых людей. Это абсолютно новый продукт с оптимальной ценой и высоким качеством!</div>
-                    <div class="menu__item-divider"></div>
-                    <div class="menu__item-price">
-                        <div class="menu__item-cost">Цена:</div>
-                        <div class="menu__item-total"><span>229</span> грн/день</div>
-                    </div>
-                </div> -->
             </div>
         </div>
     </div>
@@ -243,7 +215,7 @@
                     Мы ценим каждого клиента и предлагаем вам стать одним из них на очень выгодных условиях. 
                     Каждому, кто закажет доставку питание на неделю, будет предоставлена скидка в размере <span>20%!</span>
                     <br><br>
-                    Акция закончится 20 мая в 00:00
+                    Акция закончится <span>2 августа 2022 года</span> в 00:00
                 </div>
             </div>
             <div class="promotion__timer">
@@ -274,16 +246,16 @@
         <div class="container">
             <div class="social">
                 <div class="subtitle">Мы в социальных сетях:</div>
-                <a href="#" class="link">instagram</a>
-                <a href="#" class="link">facebook</a>
+                <a href="https://www.instagram.com/zimenkov_ua" class="link">instagram</a>
+                <a href="https://www.facebook.com/AlexZimenkov97" class="link">facebook</a>
             </div>
             <div class="pepper">
                 <img src="icons/veg.svg" alt="pepper">
             </div>
             <div class="call">
                 <div class="subtitle">Или позвоните нам</div>
-                <a href="#" class="link">+380678341034</a>
-                <a href="#" class="link">+380500941356</a>
+                <a href="#" class="link">+380982150300</a>
+                <a href="#" class="link">+380982150300</a>
             </div>
         </div>
     </footer>
@@ -302,11 +274,6 @@
         </div>
 	</div>
 	
-	<script src="js/main.js"></script>
-	<script src="js/timer.js"></script>
-	<script src="js/modal.js"></script>
-	<script src="js/menu-card.js"></script>
-	<script src="js/slider.js"></script>
-	<script src="js/forms.js"></script>
+	<script src="js/bundle.js"></script>
 </body>
 </html>
