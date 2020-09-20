@@ -1,5 +1,4 @@
-'use strict';
-window.addEventListener('DOMContentLoaded', () => {
+function slider () {
 
 	let current = document.querySelector('#current'),
 		total = document.querySelector('#total'),
@@ -121,4 +120,5 @@ window.addEventListener('DOMContentLoaded', () => {
 			addStyleList();
 		});
 	});
-});
+}
+module.exports = slider;

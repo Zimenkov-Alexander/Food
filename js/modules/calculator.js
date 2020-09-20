@@ -1,5 +1,4 @@
-'use strict';
-window.addEventListener('DOMContentLoaded', () => {
+function calculator () {
 	const resuilt = document.querySelector('.calculating__result span');
 		
 	let gender, height, weight, age, radio;
@@ -110,4 +109,5 @@ window.addEventListener('DOMContentLoaded', () => {
 	getDinamicInformation('#age');
 	
 	calcTotal();
-});
+}
+module.exports = calculator;

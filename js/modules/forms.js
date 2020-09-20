@@ -1,6 +1,4 @@
-'use strict';
-
-window.addEventListener('DOMContentLoaded', () => {
+function forms () {
 
 	const forms = document.querySelectorAll('form');
 
@@ -91,4 +89,5 @@ window.addEventListener('DOMContentLoaded', () => {
 		.then(data => data.json())
 		.then(res => console.log(res));
 		
-});
+}
+module.exports = forms;

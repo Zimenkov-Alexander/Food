@@ -1,5 +1,4 @@
-'use strict';
-window.addEventListener('DOMContentLoaded', () => {
+function modal () {
 
 	const modalOpenBtn = document.querySelectorAll('[data-modal]'),
 		modal = document.querySelector('.modal'),
@@ -43,4 +42,5 @@ window.addEventListener('DOMContentLoaded', () => {
 	});
 
 	window.addEventListener('scroll', showModalByScroll);
-});
+}
+module.exports = modal;

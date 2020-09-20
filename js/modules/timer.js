@@ -1,5 +1,4 @@
-'use strict';
-window.addEventListener('DOMContentLoaded', () => {
+function timer () {
 	const deadLine = '2020-09-20';
 
 	function getTimeRemaining(endtime){
@@ -53,4 +52,5 @@ window.addEventListener('DOMContentLoaded', () => {
 	}
 
 	setClock('.timer', deadLine);
-});
+}
+module.exports = timer;

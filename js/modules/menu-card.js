@@ -1,4 +1,4 @@
-window.addEventListener('DOMContentLoaded', () => {
+function MenuCard() {
 
 	class MenuCard {
 		constructor(scr, alt, title, descr, price, parentSelector){
@@ -47,5 +47,7 @@ window.addEventListener('DOMContentLoaded', () => {
 			data.forEach(({img, altimg, title, descr, price}) => {
 				new MenuCard(img,altimg,title,descr,price, '.menu .container').render();
 			});
-		})
-});
+		});
+}
+
+module.exports = MenuCard;
