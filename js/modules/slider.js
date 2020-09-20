@@ -1,20 +1,23 @@
-function slider () {
+function slider ({
+	container, slide, nextArrow, prevArrow,
+	totalCounter, corruntCounter, wrapper, field 
+}) {
 
-	let current = document.querySelector('#current'),
-		total = document.querySelector('#total'),
+	let current = document.querySelector(corruntCounter),
+		total = document.querySelector(totalCounter),
 		slideIndex = 1,
 		offset = 0;
 
 	// Переменные по слайдеру
-	const slides = document.querySelectorAll('.offer__slide'),
-		  slider = document.querySelector('.offer__slider'),
-		  sliderWrapper = document.querySelector('.offer__slider-wrapper'),
-	 	  slidesField = document.querySelector('.offer__slider-inner'),
+	const slides = document.querySelectorAll(slide),
+		  slider = document.querySelector(container),
+		  sliderWrapper = document.querySelector(wrapper),
+	 	  slidesField = document.querySelector(field),
 		  slideWidth = window.getComputedStyle(sliderWrapper).width;
 
 	// Переменные по кнопкам навигаии
-	const btnNextSlide = document.querySelector('.offer__slider-next'),
-		  btnPrevSlide = document.querySelector('.offer__slider-prev'),
+	const btnNextSlide = document.querySelector(nextArrow),
+		  btnPrevSlide = document.querySelector(prevArrow),
 		  indicators = document.createElement('ol'),
 		  dots = [];
 
@@ -121,4 +124,4 @@ function slider () {
 		});
 	});
 }
-module.exports = slider;
+export default slider;

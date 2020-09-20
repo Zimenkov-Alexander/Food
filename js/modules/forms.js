@@ -1,3 +1,5 @@
+import {postData} from '../services/services';
+
 function forms () {
 
 	const forms = document.querySelectorAll('form');
@@ -11,19 +13,7 @@ function forms () {
 	forms.forEach(item => {
 		bindPostData(item);
 	});
-
-	const postData = async (url, data) => {
-		const res = await fetch (url, {
-			method: 'POST',
-			headers: {
-				'Content-Type': 'application/json'
-			},
-			body: data
-		});
-
-		return await res.json();
-	};
-
+	
 	function bindPostData(form){
 		form.addEventListener('submit', (evt) => {
 			evt.preventDefault();
@@ -86,8 +76,8 @@ function forms () {
 	
 
 	fetch('http://localhost:3000/menu')
-		.then(data => data.json())
-		.then(res => console.log(res));
+		.then(data => data.json());
+		// .then(res => console.log(res));
 		
 }
-module.exports = forms;
+export default forms;
